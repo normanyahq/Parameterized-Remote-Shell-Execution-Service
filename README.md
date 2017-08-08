@@ -1,6 +1,10 @@
 # Parameterized-Remote-Shell-Execution-Service 
 Execute File on Remote Machine with Parameterized Arguments through REST API Edit
 
+To avoid shell injection, we may need to run some executables with parameter list. It can be easily done on local machine with APIs provided by compilers, interpreters, etc. However, I haven't found any utilities that can run executable on remote machine that is parameterized, so I decided to write this one.
+
+Note that this tool should only be used for debugging purpose, because it doesn't have any authentication, which means anyone can run command through this service. If you do need authentication, feel free to modify the code. One simple way is to use HTTP Basic Auth provided by Flask: http://flask.pocoo.org/snippets/8/
+
 
 ## Install
 make install
@@ -11,9 +15,27 @@ make debug
 ## Run in Multithreaded Mode
 make run
 
-## Example
+## Usage
 
-Command
+### Payload
+
+- file: The file or command to execute 
+- args: the arg list for the executable
+- input: the input for standard input stream
+
+Following payload is equivalent to `echo "/var/tmp\n/tmp" | xargs ls`
+```
+{
+  "file": "xargs",
+  "args": [
+    "ls"
+  ],
+  "input": "/var/tmp\n/tmp"
+}
+```
+### Example
+
+POST
 ```
 curl -X POST -H "Content-type: application/json" --data '{"file": "xargs", "args":["ls"], "input":"/var/tmp\n/tmp"}' localhost:41414
 ```
