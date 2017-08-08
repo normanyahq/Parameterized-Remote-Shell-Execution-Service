@@ -2,7 +2,7 @@ PORT := 41414
 HOST := 0.0.0.0
 WORKER := 4
 
-.PHONY: install run
+.PHONY: install run debug
 
 install:
 	pip install -r requirements.txt
