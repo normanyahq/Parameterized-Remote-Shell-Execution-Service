@@ -1,5 +1,5 @@
 # Parameterized-Remote-Shell-Execution-Service 
-Execute File on Remote Machine with Parameterized Arguments through REST API Edit
+Execute File on Remote Machine with Parameterized Arguments through REST API
 
 To avoid shell injection, we may need to run some executables with parameter list. It can be easily done on local machine with APIs provided by compilers, interpreters, etc. However, I haven't found any utilities that can run executable on remote machine that is parameterized, so I decided to write this one.
 
