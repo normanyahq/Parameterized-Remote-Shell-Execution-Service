@@ -11,4 +11,4 @@ run:
 	gunicorn -w $(WORKER) server:app -b $(HOST):$(PORT)
 
 debug:
-	export FLASK_APP=server.py && flask run -p $(PORT)
+	export FLASK_APP=server.py && flask run -p $(PORT) --host $(HOST)
