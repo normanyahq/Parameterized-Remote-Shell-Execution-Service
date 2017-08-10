@@ -31,7 +31,8 @@ def commandExecutor():
                             "stderr": stderr,
                             "exit_code": process.returncode,
                             "error": process.returncode!=0})
-        print (stdout)
+        print ("\tstdout: {}".format(stdout))
         if stderr:
-            print (stderr)
+            print ("\tstderr: {}".format(stderr))
+        print ("\tresult: {}".format(result))
         return result
