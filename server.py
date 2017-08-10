@@ -21,12 +21,17 @@ def commandExecutor():
         return HelpMessage
     elif request.method == "POST":
         commandObject = request.get_json()
+        print ('Command Object: {}'.format(commandObject))
         process = Popen([commandObject["file"]] + commandObject["args"],
                         stdin=PIPE,
                         stdout=PIPE,
                         stderr=PIPE)
         (stdout, stderr) = process.communicate(input=commandObject.get("input", ""))
-        return json.dumps({ "stdout": stdout,
+        result = json.dumps({ "stdout": stdout,
                             "stderr": stderr,
                             "exit_code": process.returncode,
                             "error": process.returncode!=0})
+        print (stdout)
+        if stderr:
+            print (stderr)
+        return result
