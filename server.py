@@ -26,7 +26,7 @@ def commandExecutor():
                         stdin=PIPE,
                         stdout=PIPE,
                         stderr=PIPE)
-        (stdout, stderr) = process.communicate(input=commandObject.get("input", ""))
+        (stdout, stderr) = process.communicate(input=commandObject.get("input", "").encode('utf-8'))
         result = json.dumps({ "stdout": stdout,
                             "stderr": stderr,
                             "exit_code": process.returncode,
